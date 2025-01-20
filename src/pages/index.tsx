@@ -1,13 +1,10 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Component, Palette, Zap } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -25,21 +22,11 @@ const staggerContainer = {
 
 export default function IndexPage() {
   const navigate = useNavigate();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Here you would typically handle form submission, e.g., send data to a server
-    console.log("Lead captured:", { name, email });
-    setName("");
-    setEmail("");
-  };
 
   return (
     <div className="container mx-auto px-4 py-16 space-y-32">
       {/* Hero Section */}
-      <motion.section 
+      <motion.section
         className="text-center space-y-6"
         initial=opacity: 0
         animate=opacity: 1
@@ -54,48 +41,11 @@ export default function IndexPage() {
           With Altan AI
         </h1>
         <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-         Start chatting to edit this app.
+          Start chatting to edit this app.
         </p>
         <Button size="lg" className="mt-4" onClick={() => navigate('/dashboard')}>
           View sample dashboard <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
-      </motion.section>
-
-      {/* Lead Capture Form */}
-      <motion.section
-        className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md"
-        initial=opacity: 0
-        animate=opacity: 1
-        transition=duration: 0.8
-      >
-        <h2 className="text-2xl font-bold mb-4">Join Our Fundraising Effort</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <Label htmlFor="name">Name</Label>
-            <Input
-              id="name"
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-              className="mt-1 block w-full"
-            />
-          </div>
-          <div>
-            <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="mt-1 block w-full"
-            />
-          </div>
-          <Button type="submit" size="lg" className="w-full">
-            Submit
-          </Button>
-        </form>
       </motion.section>
 
       {/* Features Section */}
@@ -165,7 +115,7 @@ export default function IndexPage() {
           </p>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           variants={staggerContainer}
           className="grid gap-4 md:grid-cols-2 lg:grid-cols-3"
         >
