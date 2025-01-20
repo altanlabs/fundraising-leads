@@ -39,7 +39,7 @@ export default function IndexPage() {
   return (
     <div className="container mx-auto px-4 py-16 space-y-32">
       {/* Hero Section */}
-      <motion.section
+      <motion.section 
         className="text-center space-y-6"
         initial=opacity: 0
         animate=opacity: 1
@@ -54,7 +54,7 @@ export default function IndexPage() {
           With Altan AI
         </h1>
         <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-          Start chatting to edit this app.
+         Start chatting to edit this app.
         </p>
         <Button size="lg" className="mt-4" onClick={() => navigate('/dashboard')}>
           View sample dashboard <ArrowRight className="ml-2 h-4 w-4" />
@@ -165,7 +165,7 @@ export default function IndexPage() {
           </p>
         </motion.div>
 
-        <motion.div
+        <motion.div 
           variants={staggerContainer}
           className="grid gap-4 md:grid-cols-2 lg:grid-cols-3"
         >
