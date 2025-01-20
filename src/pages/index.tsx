@@ -1,16 +1,19 @@
-import { motion } from "framer-motion"
-import { ArrowRight, Component, Palette, Zap } from "lucide-react"
-import { useNavigate } from "react-router-dom"
+import { motion } from "framer-motion";
+import { ArrowRight, Component, Palette, Zap } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
   transition: { duration: 0.5 }
-}
+};
 
 const staggerContainer = {
   animate: {
@@ -18,19 +21,29 @@ const staggerContainer = {
       staggerChildren: 0.1
     }
   }
-}
+};
 
 export default function IndexPage() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Here you would typically handle form submission, e.g., send data to a server
+    console.log("Lead captured:", { name, email });
+    setName("");
+    setEmail("");
+  };
 
   return (
     <div className="container mx-auto px-4 py-16 space-y-32">
       {/* Hero Section */}
       <motion.section 
         className="text-center space-y-6"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
+        initial=opacity: 0
+        animate=opacity: 1
+        transition=duration: 0.8
       >
         <Badge variant="secondary" className="mb-4">
           Welcome to Your New App
@@ -48,12 +61,49 @@ export default function IndexPage() {
         </Button>
       </motion.section>
 
+      {/* Lead Capture Form */}
+      <motion.section
+        className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md"
+        initial=opacity: 0
+        animate=opacity: 1
+        transition=duration: 0.8
+      >
+        <h2 className="text-2xl font-bold mb-4">Join Our Fundraising Effort</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <Label htmlFor="name">Name</Label>
+            <Input
+              id="name"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+              className="mt-1 block w-full"
+            />
+          </div>
+          <div>
+            <Label htmlFor="email">Email</Label>
+            <Input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="mt-1 block w-full"
+            />
+          </div>
+          <Button type="submit" size="lg" className="w-full">
+            Submit
+          </Button>
+        </form>
+      </motion.section>
+
       {/* Features Section */}
       <motion.section
         variants={staggerContainer}
         initial="initial"
         whileInView="animate"
-        viewport={{ once: true }}
+        viewport=once: true
         className="grid gap-8 md:grid-cols-3"
       >
         <motion.div variants={fadeInUp}>
@@ -103,7 +153,7 @@ export default function IndexPage() {
       <motion.section
         initial="initial"
         whileInView="animate"
-        viewport={{ once: true }}
+        viewport=once: true
         className="space-y-8"
       >
         <motion.div variants={fadeInUp} className="text-center">
@@ -128,7 +178,7 @@ export default function IndexPage() {
       <motion.section
         initial="initial"
         whileInView="animate"
-        viewport={{ once: true }}
+        viewport=once: true
         className="text-center space-y-6"
       >
         <motion.div variants={fadeInUp}>
@@ -149,5 +199,5 @@ export default function IndexPage() {
         </motion.div>
       </motion.section>
     </div>
-  )
+  );
 }
